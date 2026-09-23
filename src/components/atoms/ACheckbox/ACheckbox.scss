@@ -1,0 +1,11 @@
+.checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: var(--color-accent);
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,17 @@
+.input {
+  min-height: 2.75rem;
+  width: 100%;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  background-color: var(--color-surface);
+  padding: 0.5rem 0.75rem;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--color-danger);
+  }
+}
