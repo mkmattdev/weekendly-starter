@@ -8,10 +8,12 @@ import { MEmptyState } from "./components/molecules/MEmptyState/MEmptyState";
 import { MFormField } from "./components/molecules/MFormField/MFormField";
 import { MPagination } from "./components/molecules/MPagination/MPagination";
 import { MTable, type TableColumn } from "./components/molecules/MTable/MTable";
+import { MButtonGroup } from "./components/molecules/MButtonGroup/MButtonGroup";
 
 export const App = () => {
   const PAGE_COUNT = 5;
   const [currentPage, setCurrentPage] = useState(1);
+  const [status, setStatus] = useState("all");
 
   type City = {
     id: string;
@@ -50,6 +52,18 @@ export const App = () => {
         getItemKey={getCityKey}
         caption="Cities to visit"
       />
+
+      <MButtonGroup
+        label="Filter by visit status"
+        options={[
+          { value: "all", label: "All places", count: 5 },
+          { value: "planned", label: "Want to go", count: 3 },
+          { value: "visited", label: "Visited", count: 2 },
+        ]}
+        value={status}
+        onChange={setStatus}
+      />
+      <p>Wybrano: {status}</p>
 
       <ABadge>Want to go</ABadge>
       <ABadge tone="green">Visited</ABadge>
