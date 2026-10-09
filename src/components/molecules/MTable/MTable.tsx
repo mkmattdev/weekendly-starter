@@ -28,7 +28,7 @@ export const MTable = <Item extends object>({
       tabIndex={0}
       className="overflow-x-auto rounded-xl border border-line/40 bg-surface"
     >
-      <table>
+      <table className="w-full min-w-160 text-left text-sm">
         <caption
           id={captionId}
           className="sr-only"

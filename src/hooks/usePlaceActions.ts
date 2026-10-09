@@ -1,8 +1,7 @@
-import { deletePlace, updatePlace } from "@/api/places";
+import { deletePlace, updatePlace, createPlace } from "@/api/places";
 import type { Place, PlaceInput } from "@/models/place";
 import { useAppDispatch } from "@/store/hooks";
 import { placeAdded, placeRemoved, placeUpdated } from "@/store/placesSlice";
-import { createPlace } from "@backend/storybook";
 import { useState } from "react";
 
 export const usePlaceActions = () => {
@@ -19,9 +18,10 @@ export const usePlaceActions = () => {
 
     try {
       await action();
-      return false;
+      return true;
     } catch (saveError) {
       setError(saveError instanceof Error ? saveError.message : "Could not save changes");
+      return false;
     } finally {
       setIsPending(false);
     }
