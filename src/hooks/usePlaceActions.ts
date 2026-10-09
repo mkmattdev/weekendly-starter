@@ -1,6 +1,7 @@
-import type { PlaceInput } from "@/models/place";
+import { deletePlace, updatePlace } from "@/api/places";
+import type { Place, PlaceInput } from "@/models/place";
 import { useAppDispatch } from "@/store/hooks";
-import { placeAdded } from "@/store/placesSlice";
+import { placeAdded, placeRemoved, placeUpdated } from "@/store/placesSlice";
 import { createPlace } from "@backend/storybook";
 import { useState } from "react";
 
@@ -31,4 +32,18 @@ export const usePlaceActions = () => {
       const savedPlace = await createPlace(input);
       dispatch(placeAdded(savedPlace));
     });
+
+  const update = (place: Place) =>
+    runAction(async () => {
+      const savedPlace = await updatePlace(place);
+      dispatch(placeUpdated(savedPlace));
+    });
+
+  const remove = (placeId: string) =>
+    runAction(async () => {
+      await deletePlace(placeId);
+      dispatch(placeRemoved(placeId));
+    });
+
+  return { isPending, error, add, update, remove };
 };
