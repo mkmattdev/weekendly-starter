@@ -24,7 +24,14 @@ const placesSlice = createSlice({
       );
     },
     placeRemoved: (state, action: PayloadAction<string>) => {
-      // TODO: Usunąć dany item z items na bazie action.payload, który jest typu string (jest to id elementu, który mamy usunąć)
+      state.items = state.items.filter((place) => place.id !== action.payload);
     },
   },
+  selectors: {
+    selectPlaces: (state) => state.items,
+  },
 });
+
+export const { placesLoaded, placeAdded, placeUpdated, placeRemoved } = placesSlice.actions;
+export const { selectPlaces } = placesSlice.selectors;
+export const placesReducer = placesSlice.reducer;
